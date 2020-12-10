@@ -15,60 +15,64 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.UserDto;
-import com.example.demo.persistence.domain.User;
-import com.example.demo.service.UserService;
+import com.example.demo.dto.ToDoDto;
+import com.example.demo.persistence.domain.ToDo;
+import com.example.demo.service.ToDoService;
 
 @RestController
 @CrossOrigin
-@RequestMapping("/user")
-public class UserController {
+@RequestMapping("/todo")
+public class ToDoController {
 	
-	UserService service;
+	ToDoService service;
 
 	@Autowired
-	public UserController(UserService service) {
+	public ToDoController(ToDoService service) {
 		super();
 		this.service = service;
 	}
 	
 	//create
 	@PostMapping("/create")
-	public ResponseEntity<UserDto> create(@RequestBody User user){
-		UserDto created = this.service.create(user);
+	public ResponseEntity<ToDoDto> create(@RequestBody ToDo toDo){
+		ToDoDto created = this.service.create(toDo);
 		
 		return new ResponseEntity<>(created, HttpStatus.CREATED);
 	}
 	
-	//read all
+	//readAll
 	@GetMapping("/read")
-	public ResponseEntity<List<UserDto>> read(){
+	public ResponseEntity<List<ToDoDto>> read(){
 		return ResponseEntity.ok(this.service.readAll());
 	}
 	
-	//read one
+	//readOne
 	@GetMapping("/read/{id}")
-	public ResponseEntity<UserDto> readOne(@PathVariable Long id){
+	public ResponseEntity<ToDoDto> readOne(@PathVariable Long id){
 		return ResponseEntity.ok(this.service.readOne(id));
 	}
 	
 	//update
 	@PutMapping("/update/{id}")
-	public ResponseEntity<UserDto> update(@PathVariable Long id, @RequestBody UserDto dto){
-		return new ResponseEntity<>(this.service.update(dto, id), HttpStatus.ACCEPTED);
+	public ResponseEntity<ToDoDto> update(@PathVariable Long id, ToDoDto dto){
+		return new ResponseEntity<>(this.service.update(dto, id),HttpStatus.ACCEPTED);
 	}
 	
 	//delete
-	@DeleteMapping("/delete/{id}")
-	public ResponseEntity<UserDto> delete(@PathVariable Long id){
+	@DeleteMapping("delete/{id}")
+	public ResponseEntity<ToDoDto> delete(@PathVariable Long id){
+		//return no content if deleted successfully
 		return this.service.delete(id)?new ResponseEntity<>(HttpStatus.NO_CONTENT)
+				//if this record isnt found, internal server error
 				:new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
-		
 	}
 	
-	//read by name
+	//find by name
 	@GetMapping("/findByName/{name}")
-	public ResponseEntity<List<UserDto>> readByName(@PathVariable String name){
+	public ResponseEntity <List<ToDoDto>> findByName(@PathVariable String name){
 		return ResponseEntity.ok(this.service.findByName(name));
 	}
+	
+	
+
 }

@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -30,6 +31,9 @@ public class User {
 	
 	@NotNull
 	private String tasks;
+	
+	@ManyToOne
+	private ToDo toDo;
 
 	public User(Long id, String name, @Min(1) @Max(120) int age, String tasks) {
 		super();
