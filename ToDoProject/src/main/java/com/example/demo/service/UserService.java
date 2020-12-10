@@ -14,7 +14,7 @@ import com.example.demo.persistence.repo.UserRepo;
 import com.example.demo.util.SpringBeanUtil;
 
 @Service
-public class CarService {
+public class UserService {
 
 	//business logic - crud
 	
@@ -28,7 +28,7 @@ public class CarService {
 	
 	
 	@Autowired
-	public CarService(UserRepo repo, ModelMapper mapper) {
+	public UserService(UserRepo repo, ModelMapper mapper) {
 		super();
 		this.repo = repo;
 		this.mapper = mapper;
