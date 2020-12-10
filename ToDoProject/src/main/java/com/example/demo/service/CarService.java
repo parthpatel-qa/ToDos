@@ -11,6 +11,7 @@ import com.example.demo.dto.UserDto;
 import com.example.demo.exceptions.UserNotFoundExceptions;
 import com.example.demo.persistence.domain.User;
 import com.example.demo.persistence.repo.UserRepo;
+import com.example.demo.util.SpringBeanUtil;
 
 @Service
 public class CarService {
@@ -52,4 +53,22 @@ public class CarService {
 	}
 	
 	//update
+	public UserDto update(UserDto userDto, Long id) {
+		User toUpdate = this.repo.findById(id).orElseThrow(UserNotFoundExceptions::new);
+		toUpdate.setName(userDto.getName());
+		SpringBeanUtil.mergeNotNull(userDto, toUpdate);
+		return this.mapToDto(this.repo.save(toUpdate));
+		
+	}
+	
+	//delete
+	public boolean delete(Long id) {
+		this.repo.deleteById(id);
+		return !this.repo.existsById(id);
+	}
+	
+	//find by name
+	public List<UserDto> findByName(String name){
+		return this.repo.findByName(name).stream().map(this::mapToDto).collect(Collectors.toList());
+	}
 }
