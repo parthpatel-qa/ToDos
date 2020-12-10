@@ -7,6 +7,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.validation.constraints.NotNull;
 
@@ -26,22 +27,21 @@ public class ToDo {
 	private Long id;
 	
 	@NotNull
-	private String name;
+	private String todoTitle;
 	
-	@OneToMany(mappedBy = "toDo", fetch = FetchType.EAGER)
-	@OnDelete(action = OnDeleteAction.CASCADE)
-	private List<User> users;
+	@ManyToOne
+	private User user;
 
-	public ToDo(Long id, String name) {
+	public ToDo(Long id, String todoTitle) {
 		super();
 		this.id = id;
-		this.name = name;
+		this.todoTitle = todoTitle;
 		
 	}
 
-	public ToDo(String name) {
+	public ToDo(String todoTitle) {
 		super();
-		this.name = name;
+		this.todoTitle = todoTitle;
 		
 	}
 	

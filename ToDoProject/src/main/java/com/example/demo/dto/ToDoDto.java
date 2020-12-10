@@ -1,7 +1,5 @@
 package com.example.demo.dto;
 
-import java.util.List;
-
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -10,7 +8,7 @@ import lombok.NoArgsConstructor;
 public class ToDoDto {
 
 	private Long id;
-	private String name;
+	private String todoTitle;
 	
-	private List<UserDto> users;
+
 }

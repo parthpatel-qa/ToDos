@@ -54,7 +54,7 @@ public class ToDoController {
 	
 	//update
 	@PutMapping("/update/{id}")
-	public ResponseEntity<ToDoDto> update(@PathVariable Long id, ToDoDto dto){
+	public ResponseEntity<ToDoDto> update(@PathVariable Long id, @RequestBody ToDoDto dto){
 		return new ResponseEntity<>(this.service.update(dto, id),HttpStatus.ACCEPTED);
 	}
 	

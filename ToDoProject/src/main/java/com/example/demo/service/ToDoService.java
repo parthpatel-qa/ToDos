@@ -49,7 +49,7 @@ public class ToDoService {
 	//update
 	public ToDoDto update(ToDoDto dto, Long id) {
 		ToDo toUpdate = this.repo.findById(id).orElseThrow(ToDoNotFoundException::new);
-		toUpdate.setName(dto.getName());
+		toUpdate.setTodoTitle(dto.getTodoTitle());
 		SpringBeanUtil.mergeNotNull(dto, toUpdate);
 		return this.mapToDTO(this.repo.save(toUpdate));
 	}
