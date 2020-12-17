@@ -20,8 +20,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultMatcher;
 
-import com.example.demo.dto.ToDoDto;
-import com.example.demo.persistence.domain.ToDo;
+import com.example.demo.dto.UserDto;
+import com.example.demo.persistence.domain.User;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest
@@ -30,7 +30,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Sql(scripts = {"classpath:toDo-schema.sql", 
 		"classpath:to-Do-data.sql"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles("dev")
-public class ToDoControllerIntegrationTest {
+public class UserControllerIntegrationTest {
 	
 	@Autowired
 	private MockMvc mvc;
@@ -41,49 +41,45 @@ public class ToDoControllerIntegrationTest {
 	@Autowired
 	private ModelMapper mapper;
 	
-	private ToDoDto mapToDto(ToDo toDo) {
-		return this.mapper.map(toDo, ToDoDto.class);
+	private UserDto mapToDto(User user) {
+		return this.mapper.map(user, UserDto.class);
 	}
 	
-	private final ToDo TEST_TODO_1 = new ToDo(1L, "London");
-	private final ToDo TEST_TODO_2 = new ToDo(2L, "Tokyo");
+	private final User TEST_USER_1 = new User(1L, "James", 1);
+	private final User TEST_USER_2 = new User(2L, "Kyle", 1);
 	
-	private final List<ToDo> ListOfToDos = List.of(TEST_TODO_1,TEST_TODO_2);
+	private final List<User> ListOfUsers = List.of(TEST_USER_1,TEST_USER_2);
 	
-	private final String URI = "/todo";
+	private final String URI = "/user";
 	
-	//create
 	@Test
 	void createTest() throws Exception {
-		ToDoDto testDTO = mapToDto(new ToDo("Paris"));
+		UserDto testDTO = mapToDto(new User("Tyler", 2));
 		String testDTOAsJSON = this.jsonifier.writeValueAsString(testDTO);
-		RequestBuilder request = post(URI).contentType(MediaType.APPLICATION_JSON).content(testDTOAsJSON);
+		
+		RequestBuilder request = post(URI + "/create").contentType(MediaType.APPLICATION_JSON).content(testDTOAsJSON);
 		
 		ResultMatcher checkStatus = status().isCreated();
 		
-		ToDoDto testSavedDTO = mapToDto(new ToDo("Paris"));
+		UserDto testSavedDTO = mapToDto(new User("Tyler", 2));
 		testSavedDTO.setId(3L);
 		String testSavedDTOAsJSON = this.jsonifier.writeValueAsString(testSavedDTO);
+		
 		ResultMatcher checkBody = content().json(testSavedDTOAsJSON);
 		
 		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
 	}
 	
 	@Test
-	void readAllTest() throws Exception{
-		
-	}
-	
-	@Test
-	void readOneTest() throws Exception{
-		
-	}
-	@Test
 	void deleteTest() throws Exception {
+		
 		RequestBuilder request = delete(URI + "/1");
+		
 		ResultMatcher checkStatus = status().isNoContent();
 		
 		this.mvc.perform(request).andExpect(checkStatus);
 	}
+	
+	
 
 }
