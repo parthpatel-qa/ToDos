@@ -33,14 +33,15 @@ function createTableHead(table,data){
         th.appendChild(text);
         row.appendChild(th);
     }
-    let th2 = document.createElement("th")
-    let text2 = document.createTextNode("Delete");
-    th2.appendChild(text2);
-    row.appendChild(th2)
+    // let th2 = document.createElement("th")
+    // let text2 = document.createTextNode("Delete");
+    // th2.appendChild(text2);
+    // row.appendChild(th2)
 }
 
 function createTableBody (table,data){
     for(let record of data){
+      console.log(data);
         let row = table.insertRow();
         for(let prop in record){
             let cell = row.insertCell();
@@ -53,53 +54,23 @@ function createTableBody (table,data){
         delBtn.className ="btn btn-outline-danger";
         delBtn.appendChild(btnVal);
         newCell.appendChild(delBtn);
+        delBtn.onclick = function(){
+          deleteToDo(record.id);
+          return false;
+        }
+        
+      }
     }
-}
-
-document.querySelector("form.createToDo").addEventListener("submit", function(stop){
-  let formElements = document.querySelector("form.createToDo").elements;
-
-  let toDoID = formElements["idInput"].value;
-  let name = formElements["nameInput"].value;
-  let userID = formElements["userIDInput"].value;
-  
-  
-  
-  newToDo(toDoID,name,userID);
-  
+    
+function deleteToDo(id){
+  fetch("http://localhost:9092/todo/delete/"+id, {
+    method: 'delete',
+    headers: {
+      "Content-type": "application/json"
+    },
   })
 
-  function newToDo(toDoID,name,userID){
-
-
-    let dataToPost ={
-        
-            "id": toDoID,
-            "toDoTitle": name,
-            "userID": userID
-  
-    }
-    fetch("http://localhost:9092/todo/create", {
-      method: 'Post',
-      headers: {
-        "Content-type": "application/json"
-      },
-      body:JSON.stringify(dataToPost)
-    })
-
-    .then(function (data) {
-      console.log('Request succeeded with JSON response', data);
-      let mydiv = document.getElementById("create");
-      mydiv.className ="alert alert-success"
-      mydiv.textContent ="Student created";
-      removeEl(mydiv)
-      
-    })
-    .catch(function (error) {
-      console.log('Request failed', error);
-      let mydiv = document.getElementById("create");
-      mydiv.className ="alert alert-danger"
-      mydiv.textContent ="Student not created";
-      removeEl(mydiv)
-    });
-  }
+  .then(function (data) {
+    console.log('Request succeeded with JSON response', data);
+})
+}

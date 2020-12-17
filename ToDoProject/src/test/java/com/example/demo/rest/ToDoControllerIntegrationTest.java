@@ -26,7 +26,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @SpringBootTest
 @AutoConfigureMockMvc
 //sql runs in order so put schema first
-@Sql(scripts = {"classpath:toDo-schema.sql", "classpath: to-Do-data.sql"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
+@Sql(scripts = {"classpath:toDo-schema.sql", 
+		"classpath:to-Do-data.sql"}, executionPhase = ExecutionPhase.BEFORE_TEST_METHOD)
 @ActiveProfiles("dev")
 public class ToDoControllerIntegrationTest {
 	

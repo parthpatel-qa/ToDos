@@ -37,14 +37,14 @@ fetch('http://localhost:9092/user/read')
       let tableHead = table.createTHead();
       let row = tableHead.insertRow();
       for(let val of data2){
-        // if(val == "toDos"){
-        //   console.log("skip");
-        // }else{
+        if(val == "toDos"){
+          console.log("skip");
+        }else{
           let th = document.createElement("th");
           let text = document.createTextNode(val);
           th.appendChild(text);
           row.appendChild(th);
-      // }
+      }
     }
     let th2 = document.createElement("th")
     let text2 = document.createTextNode("Delete");
@@ -56,13 +56,13 @@ fetch('http://localhost:9092/user/read')
       for(let record of data){
           let row = table.insertRow();
           for(let prop in record){
-            // if(prop == "toDos"){
-            //   console.log("skip");
-            // }else{
+            if(prop == "toDos"){
+              console.log("skip");
+            }else{
               let cell = row.insertCell();
               let text = document.createTextNode(record[prop])
               cell.appendChild(text);
-          // }
+          }
         }
           let newCell = row.insertCell();
           let delBtn = document.createElement("button");
@@ -70,5 +70,22 @@ fetch('http://localhost:9092/user/read')
           delBtn.className ="btn btn-outline-danger";
           delBtn.appendChild(btnVal);
           newCell.appendChild(delBtn);
+          delBtn.onclick = function(){
+            deleteUser(record.id);
+            return false;
+          }
       }
+  }
+
+  function deleteUser(id){
+    fetch("http://localhost:9092/user/"+id, {
+      method: 'delete',
+      headers: {
+        "Content-type": "application/json"
+      },
+    })
+  
+    .then(function (data) {
+      console.log('Request succeeded with JSON response', data);
+  })
   }
