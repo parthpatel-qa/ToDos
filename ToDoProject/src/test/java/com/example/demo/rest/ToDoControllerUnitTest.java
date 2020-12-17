@@ -39,7 +39,7 @@ public class ToDoControllerUnitTest {
 	}
 	
 	private final ToDo TEST_TODO_1 = new ToDo(1L, "London");
-	private final ToDo TEST_TODO_2 = new ToDo(1L, "Tokyo");
+	private final ToDo TEST_TODO_2 = new ToDo(2L, "Tokyo");
 	
 	private final List<ToDo> ListOfToDos = List.of(TEST_TODO_1,TEST_TODO_2);
 	
