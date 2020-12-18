@@ -24,6 +24,31 @@
             </div>
           </nav>
 
+          <form method="POST" class="createUser">       
+            <div class="form-group">
+                <label for="idInput">Id:</label>
+                <input type="number" class="form-control" readonly id="idInput" >
+            </div> 
+            <div class="form-group">
+                <label for="nameInput">Name:</label>
+                <input type="text" class="form-control" id="nameInput" >
+            </div>
+            <div class="form-group">
+                <label for="ageInput">Age: </label>
+                <input type="number" class="form-control" id="ageInput" >
+            </div>
+            <div class="form-group">
+                <label for="toDoID">To Do ID:</label>
+                <input type="number" class="form-control" id="toDoID" >
+            </div>
+            <div class="form-group">
+                <label for="toDoInput">To Do Title</label>
+                <input type="text" class="form-control" id="toDoInput" >
+            </div>
+            
+            <button type="submit" class="btn btn-success btn-block">Submit</button>
+        </form>
+
     </div>
     <script src="../js/readOneUser.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
