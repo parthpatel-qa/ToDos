@@ -37,7 +37,7 @@ git clone https://github.com/parthpatel-qa/ToDos.git
 In Spring that would be File>Import>Maven>ExistingMavenProjects>Find the file>Finish
 ```
 <p align="center">
-<src="docs/spring.png">
+<src="ToDoProject/docs/spring.png">
 </p>
 
 
@@ -68,14 +68,14 @@ src/test/java
 The Service suites were testing with JUnit and look as such
 
 <p align="center">
-<img src="docs/service.PNG">
+<img src="ToDoProject/docs/service.PNG">
 </p>
 
 #### Controller
 Mockito was used to test these Controllers and looks as such
 
 <p align="center">
-<img src="docs/controller.PNG">
+<img src="ToDoProject/docs/controller.PNG">
 </p>
 
 ## Deployment
@@ -94,7 +94,7 @@ From here you can run the system as was described in the 'Installing' heading.
 
 ## Authors
 
-* **Parth Patel** - *Built off CP's work* - [Parth Patel](https://github.com/parthpatel-qa/)
+* **Parth Patel** - [Parth Patel](https://github.com/parthpatel-qa/)
 
 ## License
 
