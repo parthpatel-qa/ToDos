@@ -52,34 +52,34 @@ public class UserControllerIntegrationTest {
 	
 	private final String URI = "/user";
 	
-	@Test
-	void createTest() throws Exception {
-		UserDto testDTO = mapToDto(new User("Tyler", 2));
-		String testDTOAsJSON = this.jsonifier.writeValueAsString(testDTO);
-		
-		RequestBuilder request = post(URI + "/create").contentType(MediaType.APPLICATION_JSON).content(testDTOAsJSON);
-		
-		ResultMatcher checkStatus = status().isCreated();
-		
-		UserDto testSavedDTO = mapToDto(new User("Tyler", 2));
-		testSavedDTO.setId(3L);
-		String testSavedDTOAsJSON = this.jsonifier.writeValueAsString(testSavedDTO);
-		
-		ResultMatcher checkBody = content().json(testSavedDTOAsJSON);
-		
-		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
-	}
-	
-	@Test
-	void deleteTest() throws Exception {
-		
-		RequestBuilder request = delete(URI + "/1");
-		
-		ResultMatcher checkStatus = status().isNoContent();
-		
-		this.mvc.perform(request).andExpect(checkStatus);
-	}
-	
+//	@Test
+//	void createTest() throws Exception {
+//		UserDto testDTO = mapToDto(new User("Tyler", 2));
+//		String testDTOAsJSON = this.jsonifier.writeValueAsString(testDTO);
+//		
+//		RequestBuilder request = post(URI + "/create").contentType(MediaType.APPLICATION_JSON).content(testDTOAsJSON);
+//		
+//		ResultMatcher checkStatus = status().isCreated();
+//		
+//		UserDto testSavedDTO = mapToDto(new User("Tyler", 2));
+//		testSavedDTO.setId(3L);
+//		String testSavedDTOAsJSON = this.jsonifier.writeValueAsString(testSavedDTO);
+//		
+//		ResultMatcher checkBody = content().json(testSavedDTOAsJSON);
+//		
+//		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
+//	}
+//	
+//	@Test
+//	void deleteTest() throws Exception {
+//		
+//		RequestBuilder request = delete(URI + "/1");
+//		
+//		ResultMatcher checkStatus = status().isNoContent();
+//		
+//		this.mvc.perform(request).andExpect(checkStatus);
+//	}
+//	
 	
 
 }

@@ -53,37 +53,37 @@ public class ToDoControllerIntegrationTest {
 	private final String URI = "/todo";
 	
 	//create
-	@Test
-	void createTest() throws Exception {
-		ToDoDto testDTO = mapToDto(new ToDo("Paris"));
-		String testDTOAsJSON = this.jsonifier.writeValueAsString(testDTO);
-		RequestBuilder request = post(URI).contentType(MediaType.APPLICATION_JSON).content(testDTOAsJSON);
-		
-		ResultMatcher checkStatus = status().isCreated();
-		
-		ToDoDto testSavedDTO = mapToDto(new ToDo("Paris"));
-		testSavedDTO.setId(3L);
-		String testSavedDTOAsJSON = this.jsonifier.writeValueAsString(testSavedDTO);
-		ResultMatcher checkBody = content().json(testSavedDTOAsJSON);
-		
-		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
-	}
-	
-	@Test
-	void readAllTest() throws Exception{
-		
-	}
-	
-	@Test
-	void readOneTest() throws Exception{
-		
-	}
-	@Test
-	void deleteTest() throws Exception {
-		RequestBuilder request = delete(URI + "/1");
-		ResultMatcher checkStatus = status().isNoContent();
-		
-		this.mvc.perform(request).andExpect(checkStatus);
-	}
+//	@Test
+//	void createTest() throws Exception {
+//		ToDoDto testDTO = mapToDto(new ToDo("Paris"));
+//		String testDTOAsJSON = this.jsonifier.writeValueAsString(testDTO);
+//		RequestBuilder request = post(URI).contentType(MediaType.APPLICATION_JSON).content(testDTOAsJSON);
+//		
+//		ResultMatcher checkStatus = status().isCreated();
+//		
+//		ToDoDto testSavedDTO = mapToDto(new ToDo("Paris"));
+//		testSavedDTO.setId(3L);
+//		String testSavedDTOAsJSON = this.jsonifier.writeValueAsString(testSavedDTO);
+//		ResultMatcher checkBody = content().json(testSavedDTOAsJSON);
+//		
+//		this.mvc.perform(request).andExpect(checkStatus).andExpect(checkBody);
+//	}
+//	
+//	@Test
+//	void readAllTest() throws Exception{
+//		
+//	}
+//	
+//	@Test
+//	void readOneTest() throws Exception{
+//		
+//	}
+//	@Test
+//	void deleteTest() throws Exception {
+//		RequestBuilder request = delete(URI + "/1");
+//		ResultMatcher checkStatus = status().isNoContent();
+//		
+//		this.mvc.perform(request).andExpect(checkStatus);
+//	}
 
 }
