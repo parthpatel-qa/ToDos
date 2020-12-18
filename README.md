@@ -37,7 +37,7 @@ git clone https://github.com/parthpatel-qa/ToDos.git
 In Spring that would be File>Import>Maven>ExistingMavenProjects>Find the file>Finish
 ```
 <p align="center">
-<src="ToDoProject/docs/spring.png">
+<img src="ToDoProject/docs/spring.PNG">
 </p>
 
 
