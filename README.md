@@ -1,5 +1,5 @@
 Coverage: 60%
-# To Do - QA Week 8 Individual Project
+# To Do
 
 This To Do Web Application is created in Spring using a SQL Server to host a database containing To Dos and Users as well as the ability to carry out CRUD functionality.
 
